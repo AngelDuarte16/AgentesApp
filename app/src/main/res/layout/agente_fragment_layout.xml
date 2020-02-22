@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="134dp"
+        android:src="@drawable/pepe" />
+
+    <TextView
+        android:id="@+id/nombreTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Andres Manuel"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:paddingBottom="20dp"
+        android:textColor="#000000"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+
+        android:layout_height="70dp">
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Status:"
+            android:textAlignment="center"
+            android:background="#dddddd"
+            android:textSize="30dp"
+            android:id="@+id/status"
+            android:textColor="#000000"
+            />
+
+        <TextView
+            android:id="@+id/statusTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/status"
+            android:background="#dddddd"
+            android:text="INActivo"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+
+
+        <TextView
+            android:id="@+id/incidencias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Incidencias:"
+            android:background="#dddddd"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_toRightOf="@+id/incidencias"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:background="#dddddd"
+            android:textColor="#000000"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>

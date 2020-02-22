@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="134dp"
+        android:src="@drawable/gss" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grupo GSS Perú"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/gglink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="www.grupogss.com"
+        android:linksClickable="true"
+        android:textAlignment="center"
+        android:textColor="#0000ff"
+        android:textSize="15dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:id="@+id/numerogss"
+        android:text="01411611"
+        android:textAlignment="center"
+        android:textColor="#0000ff"
+        android:textSize="15dp" />
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="134dp"
+        android:src="@drawable/cadlan" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CadLan México"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="www.cadlan.com"
+        android:id="@+id/cadlink"
+        android:linksClickable="true"
+        android:textAlignment="center"
+        android:textColor="#0000ff"
+        android:textSize="15dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:text="+52 (55) 91380799"
+        android:textAlignment="center"
+        android:textColor="#0000ff"
+        android:id="@+id/numerocad"
+
+        android:textSize="15dp" />
+
+
+</LinearLayout>
