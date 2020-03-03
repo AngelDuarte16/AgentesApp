@@ -4,86 +4,155 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="center"
-    android:padding="20dp"
+    android:padding="0dp"
     android:background="#FFFFFF"
     android:layout_height="match_parent"
     >
 
 
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="134dp"
-        android:src="@drawable/pepe" />
-
-    <TextView
-        android:id="@+id/nombreTV"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:background="@drawable/myshape"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="30dp"
+        android:elevation="12dp"
+
         android:layout_height="wrap_content"
-        android:text="Andres Manuel"
-        android:textAlignment="center"
-        android:textSize="50dp"
-        android:paddingBottom="20dp"
-        android:textColor="#000000"
-        />
+
+        >
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
 
-        android:layout_height="70dp">
-
+        <ImageView
+            android:id="@+id/imageViewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:src="@drawable/ic_man" />
 
         <TextView
-            android:layout_width="100dp"
+            android:id="@+id/nombreTV"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status:"
+            android:text="Andres Manuel"
             android:textAlignment="center"
-            android:background="#dddddd"
             android:textSize="30dp"
-            android:id="@+id/status"
+            android:paddingBottom="20dp"
             android:textColor="#000000"
             />
 
-        <TextView
-            android:id="@+id/statusTV"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/status"
-            android:background="#dddddd"
-            android:text="INActivo"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="30dp" />
-    </RelativeLayout>
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:elevation="6dp"
+            android:layout_margin="20dp"
+            android:background="#ffffff"
+
+            >
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/primer"
+                android:orientation="horizontal"
+                android:background="#ffffff"
 
 
-        <TextView
-            android:id="@+id/incidencias"
-            android:layout_width="wrap_content"
+
+                >
+
+                <TextView
+                    android:id="@+id/statusTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:text="Estatus:"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:layout_gravity="top"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/statusimage"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_correct" />
+
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@+id/primer"
+                android:background="#ffffff"
+
+
+                >
+
+                <TextView
+                    android:id="@+id/incidencias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="Incidencias:"
+                    android:background="#ffffff"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/NumberIncidencesTV"
+                    android:layout_toRightOf="@+id/incidencias"
+                    android:background="#ffffff"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Incidencias:"
-            android:background="#dddddd"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="30dp" />
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_toRightOf="@+id/incidencias"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            android:background="#dddddd"
-            android:textColor="#000000"
+            android:background="#A5B1C6"
+            android:layout_margin="20dp"
+            android:imeOptions="actionDone"
+            android:text="CERRAR SESIÓN"
+            android:textColor="#ffffff"
+
             />
-    </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

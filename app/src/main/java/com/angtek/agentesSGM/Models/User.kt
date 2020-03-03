@@ -13,4 +13,6 @@ object User {
     var GENDER : String? = null
     var ACTIVE : String? = null
 
+    var INCIDENCES : String? = null
+
 }

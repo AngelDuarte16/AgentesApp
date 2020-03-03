@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.angtek.agentesSGM.R
 import kotlinx.android.synthetic.main.acercade_fragment_layout.*
 
+
 class AcercaDe_Fragment : Fragment() {
 
     override fun onCreateView(
@@ -38,9 +39,13 @@ class AcercaDe_Fragment : Fragment() {
 
 
         numerocad.setOnClickListener(){
-            val openNumber = Intent(Intent.ACTION_CALL)
-            openNumber.data = Uri.parse("tel:" + "01411611")
-            startActivity(openNumber)
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "(55)91380799"))
+            startActivity(intent)
+        }
+
+        numerogss.setOnClickListener(){
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "01411611"))
+            startActivity(intent)
         }
 
 

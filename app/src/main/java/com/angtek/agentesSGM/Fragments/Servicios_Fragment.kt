@@ -10,38 +10,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.NetworkError
-import com.android.volley.Response
-import com.android.volley.ServerError
-import com.android.volley.VolleyError
+import com.android.volley.*
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.angtek.agentesSGM.Activities.ServicioDetailActivity
 import com.angtek.agentesSGM.Adapters.ServiciosRecyclerAdapter
 import com.angtek.agentesSGM.Models.Servicio
 import com.angtek.agentesSGM.Models.User
 import com.angtek.agentesSGM.R
+import kotlinx.android.synthetic.main.agente_fragment_layout.*
 import kotlinx.android.synthetic.main.servicios_fragment_layout.*
 import org.json.JSONArray
+import org.json.JSONObject
+import android.view.ViewManager
 
-class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickListener, Response.Listener<String>, Response.ErrorListener {
 
 
+class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickListener {
 
-    override fun onErrorResponse(error: VolleyError?) {
-
-        Log.d("App", "Error: ${error.toString()}")
-        Toast.makeText(activity, error.toString(), Toast.LENGTH_LONG).show()
-
-        if (error is NetworkError){
-
-        }
-        if (error is ServerError){
-
-        }
-    }
-
-    override fun onResponse(response: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 
     var adapter : ServiciosRecyclerAdapter? = null
@@ -65,68 +51,81 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         adapter?.listener = this
 
 
-        //  loadLocaServices("popular")
-
     }
 
 
     override fun onSelectedPosition(position: Int) {
         val servicio : Servicio = dataSource.get(position)
-
         val intent = Intent(activity, ServicioDetailActivity::class.java)
         User.myservicio = servicio
-
         startActivity(intent)
     }
 
 
     fun getServices(){
 
-
+        /*
         val serivicio1 = Servicio("Salida - Terminado","11/12/20","SEDE : Encarnacio","PROVEEDOR : Elitaxi", "CONDUCTOR : Carlos Enrque", "Tesla Serie 1")
-        val serivicio2 = Servicio("Salida - Terminado","14/15/16","SEDE : Terminal ADO","PROVEEDOR : ADO", "CONDUCTOR : Carlos Enrque", "Chimeco")
+        val serivicio2 = Servicio("Salida - Terminado","14/15/16","SEDE : Terminal ADO","PROVEEDOR : ADO", "CONDUCTOR : Pepe pasto", "Chimeco")
+
+
 
         dataSource.add(serivicio1)
         dataSource.add(serivicio2)
 
-    }
+*/
 
 
-    fun saveServices(key: String, response: String){
-        val preferences = activity!!.getSharedPreferences("PREFS",
-            Context.MODE_PRIVATE)
-        val editor = preferences.edit()
+        var url = "https://5wbb09vkfi.execute-api.us-east-1.amazonaws.com/incidenciasAPI/myincidence";
+        val jsonObject = JSONObject()
+        jsonObject.put("key1", (User.ID).toString())
+        jsonObject.put("key2", "2")
+        val request = JsonObjectRequest(
+            Request.Method.POST,url,jsonObject,
+            Response.Listener { response ->
+                try {
+                    val json : JSONObject = JSONObject(response.toString())
+                    var code  = json.getString("Code")
+                    if(code == "0000"){
+                        var results : JSONArray = json.getJSONArray("Data")
+                        if (results.length() > 0){
+                            val params: ViewGroup.LayoutParams = NoServicios.layoutParams
+                            params.height = 0
+                            NoServicios.layoutParams = params
+                            Log.d("App", "results: ${results}")
 
-        editor.putString(key, response)
-        editor.commit()
-    }
+                            for (i in 0..(results.length() - 1)){
+                                val jsonService = results.getJSONObject(i)
+                                Log.d("jsonService", "Error: ${jsonService}")
 
-    fun readServices(key : String) : String?{
-        val preferences
-                = activity!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
-        return preferences.getString(key, null)
-    }
+                                val myServicio = Servicio(jsonService)
+                                Log.d("myServicio", "Error: ${myServicio}")
+
+                                dataSource.add(myServicio)
+                            }
+
+                            adapter?.notifyDataSetChanged()
 
 
-
-    fun loadLocaServices(key : String){
-        val json = readServices(key)
-        if (json != null){
-            try {
-                val results = JSONArray(json)
-
-                for (i in 0..(results.length() - 1)){
-                    val jsonServices = results.getJSONObject(i)
-                    // Convertimos el JsonObject a un objeto Movie
-                    val service = Servicio(jsonServices)
-                    dataSource.add(service)
+                        }else{
+                           // Toast.makeText(activity, "No tienes servicios por ahora", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }catch (e:Exception){
+                    Log.d("App", "Exception: ${e}")
                 }
-                adapter?.notifyDataSetChanged()
+            }, Response.ErrorListener{
+                Log.d("App", "Error: ${it}")
+            })
+        request.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            // 0 means no retry
+            1, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+        val queue = Volley.newRequestQueue(activity)
+        queue.add(request)
 
-            }catch (e : Exception){
-
-            }
-        }
     }
 
 }

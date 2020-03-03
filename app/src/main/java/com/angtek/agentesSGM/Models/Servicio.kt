@@ -1,5 +1,6 @@
 package com.angtek.agentesSGM.Models
 
+import android.util.Log
 import org.json.JSONObject
 
 class Servicio {
@@ -11,11 +12,19 @@ class Servicio {
     var conductor: String = ""
     var Vehiculo: String = ""
 
+    var idS: String = ""
+    var origen: String = ""
+    var destino: String = ""
+    var categoria: String = ""
+    var placa:String = ""
+
+
+
 
     constructor()
 
 
-    constructor(
+   constructor(
         tipo: String,
         horafecha: String,
         sede: String,
@@ -34,11 +43,42 @@ class Servicio {
     constructor(jsonObject: JSONObject) {
 
 
-        tipo = jsonObject.getString("tipo")
-        horafecha = jsonObject.getString("horafecha")
-        proveedor = jsonObject.getString("proveedor")
-        conductor = jsonObject.getString("conductor")
-        Vehiculo = jsonObject.getString("Vehiculo")
+        tipo = jsonObject.getString("ESTATUS")
+        var fecha = jsonObject.getString("fechaSer")
+        fecha = fecha.replace("T00:00:00.000Z","")
+        horafecha = fecha + "  " + jsonObject.getString("horaSer")
+        proveedor = jsonObject.getString("PROVEEDOR")
+        conductor = jsonObject.getString("CONDUCTOR")
+        Vehiculo = jsonObject.getString("VEHICULO")
+        placa = jsonObject.getString("PLACAS")
+
+        idS = jsonObject.getString("idServ")
+        categoria = jsonObject.getString("tipoRuta")
+        if (categoria == "INGRESO"){
+            origen = jsonObject.getString("DESTINO B")
+            destino = jsonObject.getString("DESTINO A")
+        }else{
+            origen = jsonObject.getString("DESTINO A")
+            destino = jsonObject.getString("DESTINO B")
+        }
+        var mysede = destino
+        mysede = mysede.replace("_"," ")
+        mysede = mysede.replace("SALIDA DE","")
+        mysede = mysede.replace("SEDE","")
+        sede =  mysede
+
+
+        var myorigen = origen
+        myorigen = myorigen.replace("_"," ")
+        myorigen = myorigen.replace("SALIDA DE","")
+        myorigen = myorigen.replace("SEDE","")
+        origen =  myorigen
+
+
+
+
+
+
     }
 
 }

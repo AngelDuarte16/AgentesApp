@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:padding="10dp"
     android:orientation="vertical"
 
@@ -15,71 +14,21 @@
 
 
 
-
     <TextView
-        android:id="@+id/tipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Salida - Terminado"
+        android:text="Reporte de incidencia"
         android:layout_marginTop="10dp"
-        android:background="#5555ff"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        />
-    <TextView
-        android:id="@+id/horafecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="13/02/2020 15:00"
-        android:background="#cccccc"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        />
-    <TextView
-        android:id="@+id/sede"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="SEDE : Encarnación"
-        android:background="#eeeeee"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        />
-    <TextView
-        android:id="@+id/proveedor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="PROVEEDOR : Elitaxi"
-        android:background="#eeeeee"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        />
-    <TextView
-        android:id="@+id/conductor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="CONDUCTOR : Huaman Angeles Carlos Enrique"
-        android:background="#eeeeee"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        />
-
-    <TextView
-        android:id="@+id/Vehiculo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="VEHÍCULO : Tesla Serie 1"
-        android:background="#eeeeee"
-        android:textColor="#000000"
-        android:textSize="15dp"
-
+        android:background="#3B62AD"
         android:paddingBottom="10dp"
+        android:textSize="40dp"
+        android:layout_gravity="top"
         />
+
+
+
+
 
 
     <TextView
@@ -89,16 +38,18 @@
         android:gravity="center"
         android:text="Seleccione un incidente: "
         android:paddingTop="15dp"
-        android:background="#ffffff"
+        android:background="#A5B1C6"
         android:textColor="#000000"
         android:textSize="15dp"
 
-        android:paddingBottom="10dp"
+
+        android:paddingBottom="20dp"
         />
 
 
 
     <Spinner
+
 
         android:id="@+id/myspinner"
         android:layout_width="fill_parent"

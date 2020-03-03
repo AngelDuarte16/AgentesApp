@@ -17,13 +17,12 @@
         />
 
 
-
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#000000">
+        android:background="#3860B0"
+        >
 
     </com.google.android.material.tabs.TabLayout>
 

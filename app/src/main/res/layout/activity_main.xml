@@ -8,37 +8,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#555555"
+    android:background="#A5B1C6"
     android:gravity="center"
     android:padding="20dp"
 
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="GSMóvil"
-        android:textAlignment="center"
-        android:textSize="50dp"
-        android:textColor="#ffffff"
-        />
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CadLan México"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:textColor="#ffffff"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SGM Agente"
-        android:textAlignment="center"
-        android:textSize="15dp"
-        android:textColor="#ffffff"
-        />
+        app:srcCompat="@drawable/mainw" />
+
 
 </LinearLayout>

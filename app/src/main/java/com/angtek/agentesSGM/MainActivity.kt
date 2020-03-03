@@ -13,15 +13,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Timer().schedule(timerTask {
-
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-
-
         }, 3000)
-
     }
-
-
 }

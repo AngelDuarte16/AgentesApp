@@ -19,8 +19,9 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.R
-
+import android.view.Gravity
+import com.angtek.agentesSGM.R
+import kotlinx.android.synthetic.main.agente_fragment_layout.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -30,11 +31,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(com.angtek.agentesSGM.R.layout.activity_login)
 
 
-        emailET.setText("47356021")
-        passwordET.setText("9728589")
+        emailET.setText("45939316")
+        passwordET.setText("9727302")
+
 
 
         loginButton.setOnClickListener {
+            loginButton.isEnabled = false
             loginPressed()
         }
 
@@ -82,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                             var results : JSONArray = json.getJSONArray("Data")
                             if (results.length() > 0){
                                 Log.d("App", "results: ${results}")
+
                                 val myData = results.getJSONObject(0)
                                 User.ID = myData.getString("ID")
                                 User.DNI = myData.getString("DNI")
@@ -97,21 +101,34 @@ class LoginActivity : AppCompatActivity() {
 
                                 if(password == User.CODE){
 
+                                    loginButton.isEnabled = true
 
                                     val intent = Intent(this, TabsActivity::class.java)
 
                                     startActivity(intent)
 
                                 }else{
-                                    Toast.makeText(this, "Contraseña erronea", Toast.LENGTH_SHORT).show()
+                                    var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
+                                        Toast.LENGTH_LONG)
+                                    mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
+                                    mytoast.show()
+
                                 }
 
                             }else{
-                                Toast.makeText(this, "Usuario erroneo", Toast.LENGTH_SHORT).show()
+                                var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
+                                    Toast.LENGTH_LONG)
+                                mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
+                                mytoast.show()
+
+                                loginButton.isEnabled = true
+
                             }
                         }
                     }catch (e:Exception){
                         Log.d("App", "Exception: ${e}")
+                        loginButton.isEnabled = true
+
                     }
 
                 }, Response.ErrorListener{
@@ -133,5 +150,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+
+
 
 }
