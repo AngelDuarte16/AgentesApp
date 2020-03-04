@@ -8,19 +8,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#A5B1C6"
+    android:background="#3860B0"
     android:gravity="center"
     android:padding="20dp"
 
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        app:srcCompat="@drawable/mainw" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SGMóvil"
+        android:fontFamily="@font/open_sans"
+        android:textSize="70dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cad\u0026Lan\u00a9 México "
+        android:fontFamily="@font/open_sans"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agente"
+        android:fontFamily="@font/open_sans"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
 
 
 </LinearLayout>

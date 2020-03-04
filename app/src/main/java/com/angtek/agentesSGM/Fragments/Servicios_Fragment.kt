@@ -67,12 +67,8 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         /*
         val serivicio1 = Servicio("Salida - Terminado","11/12/20","SEDE : Encarnacio","PROVEEDOR : Elitaxi", "CONDUCTOR : Carlos Enrque", "Tesla Serie 1")
         val serivicio2 = Servicio("Salida - Terminado","14/15/16","SEDE : Terminal ADO","PROVEEDOR : ADO", "CONDUCTOR : Pepe pasto", "Chimeco")
-
-
-
         dataSource.add(serivicio1)
         dataSource.add(serivicio2)
-
 */
 
 
@@ -89,17 +85,14 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
                     if(code == "0000"){
                         var results : JSONArray = json.getJSONArray("Data")
                         if (results.length() > 0){
+
                             val params: ViewGroup.LayoutParams = NoServicios.layoutParams
                             params.height = 0
                             NoServicios.layoutParams = params
-                            Log.d("App", "results: ${results}")
 
                             for (i in 0..(results.length() - 1)){
                                 val jsonService = results.getJSONObject(i)
-                                Log.d("jsonService", "Error: ${jsonService}")
-
                                 val myServicio = Servicio(jsonService)
-                                Log.d("myServicio", "Error: ${myServicio}")
 
                                 dataSource.add(myServicio)
                             }

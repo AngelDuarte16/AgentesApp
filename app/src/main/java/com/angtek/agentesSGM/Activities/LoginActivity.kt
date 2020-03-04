@@ -1,6 +1,9 @@
 package com.angtek.agentesSGM.Activities
 
+import android.Manifest
+import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,40 +22,54 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
 import android.view.Gravity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.angtek.agentesSGM.R
 import kotlinx.android.synthetic.main.agente_fragment_layout.*
 
 
 class LoginActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.angtek.agentesSGM.R.layout.activity_login)
+        setContentView(R.layout.activity_login)
 
 
-        emailET.setText("45939316")
-        passwordET.setText("9727302")
+        //emailET.setText("45939316")
+        //passwordET.setText("9727302")
 
 
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.INTERNET,
+                Manifest.permission.CALL_PHONE)
+                ActivityCompat.requestPermissions(this, permissions, 0)
+        } else {
+            // Permission has already been granted
+        }
 
         loginButton.setOnClickListener {
             loginButton.isEnabled = false
             loginPressed()
         }
-
-
     }
 
 
 
     fun loginPressed() {
 
+        val progressDilog = ProgressDialog(this)
+        progressDilog.setMessage("Espere un momento")
+        progressDilog.setCancelable(false)
+        progressDilog.show()
 
         val email : String = emailET.text.toString()
         val password = passwordET.text.toString()
         var errorMessage = ""
-
 
         if (password.isEmpty()){
             errorMessage = "Ingresa tu contrasena"
@@ -60,32 +77,22 @@ class LoginActivity : AppCompatActivity() {
         if (email.isEmpty()){
             errorMessage = "Ingresa tu usuario"
         }
-
         if (errorMessage.isEmpty()){
 
             var url = "https://5wbb09vkfi.execute-api.us-east-1.amazonaws.com/myApi/mylogin";
-
 
             val myjson = JSONObject()
             myjson.put("key1", email)
             myjson.put("key2", password)
 
-
-            //val jsonObject = JSONObject(params)
-
-
             val request = JsonObjectRequest(Request.Method.POST,url,myjson,
                 Response.Listener { response ->
                     try {
-
-
                         val json : JSONObject = JSONObject(response.toString())
                         var code  = json.getString("Code")
                         if(code == "0000"){
                             var results : JSONArray = json.getJSONArray("Data")
                             if (results.length() > 0){
-                                Log.d("App", "results: ${results}")
-
                                 val myData = results.getJSONObject(0)
                                 User.ID = myData.getString("ID")
                                 User.DNI = myData.getString("DNI")
@@ -97,17 +104,23 @@ class LoginActivity : AppCompatActivity() {
                                 var actst : JSONArray = act.getJSONArray("data")
                                 User.ACTIVE = actst[0].toString()
 
-
-
                                 if(password == User.CODE){
+
+                                    emailET.setText("")
+                                    passwordET.setText("")
 
                                     loginButton.isEnabled = true
 
+                                    Handler().postDelayed({progressDilog.dismiss()},100)
                                     val intent = Intent(this, TabsActivity::class.java)
 
                                     startActivity(intent)
 
                                 }else{
+                                    loginButton.isEnabled = true
+
+                                    Handler().postDelayed({progressDilog.dismiss()},100)
+
                                     var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
                                         Toast.LENGTH_LONG)
                                     mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
@@ -116,6 +129,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             }else{
+                                Handler().postDelayed({progressDilog.dismiss()},100)
                                 var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
                                     Toast.LENGTH_LONG)
                                 mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
@@ -128,11 +142,16 @@ class LoginActivity : AppCompatActivity() {
                     }catch (e:Exception){
                         Log.d("App", "Exception: ${e}")
                         loginButton.isEnabled = true
-
                     }
 
                 }, Response.ErrorListener{
+                    loginButton.isEnabled = true
                     Log.d("App", "Error: ${it}")
+                    Handler().postDelayed({progressDilog.dismiss()},100)
+                    var mytoast = Toast.makeText(this, "Error de red, intente más tarde",
+                        Toast.LENGTH_LONG)
+                    mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
+                    mytoast.show()
                 })
 
             request.retryPolicy = DefaultRetryPolicy(
@@ -146,14 +165,11 @@ class LoginActivity : AppCompatActivity() {
             queue.add(request)
 
         }else{
+            loginButton.isEnabled = true
+            progressDilog.dismiss()
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
 
     }
-
-
-
-
-
 
 }

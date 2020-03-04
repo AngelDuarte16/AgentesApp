@@ -34,12 +34,12 @@
             android:id="@+id/nombreTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:paddingBottom="20dp"
             android:text="Andres Manuel"
             android:textAlignment="center"
-            android:textSize="30dp"
-            android:paddingBottom="20dp"
             android:textColor="#000000"
-            />
+            android:textSize="30dp" />
 
 
         <LinearLayout
@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:background="#ffffff"
                     android:text="Estatus:"
+                    android:fontFamily="@font/open_sans"
                     android:layout_marginRight="10dp"
                     android:textAlignment="center"
                     android:layout_gravity="top"
@@ -107,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
+                    android:fontFamily="@font/open_sans"
                     android:text="Incidencias:"
                     android:background="#ffffff"
                     android:textAlignment="center"
@@ -122,6 +123,7 @@
                     android:layout_toRightOf="@+id/incidencias"
                     android:background="#ffffff"
                     android:text="0"
+                    android:fontFamily="@font/open_sans"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="15dp" />
@@ -141,6 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#A5B1C6"
+            android:fontFamily="@font/open_sans"
             android:layout_margin="20dp"
             android:imeOptions="actionDone"
             android:text="CERRAR SESIÓN"

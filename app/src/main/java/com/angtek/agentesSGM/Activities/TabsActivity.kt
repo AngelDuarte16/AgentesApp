@@ -16,7 +16,7 @@ class TabsActivity : AppCompatActivity() {
 
         tabsViewPager.adapter = TabsAdapter(supportFragmentManager)
         tabsViewPager.setPageTransformer(true,
-            com.ToxicBakery.viewpager.transforms.CubeOutTransformer())
+            com.ToxicBakery.viewpager.transforms.DefaultTransformer())
 
 
 

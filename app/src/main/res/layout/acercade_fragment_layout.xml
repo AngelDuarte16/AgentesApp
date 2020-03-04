@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/versionAPP"
-
+            android:fontFamily="@font/open_sans"
             android:text="Version app: 1.0"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -61,12 +61,16 @@
             android:text="Grupo GSS Perú"
             android:textAlignment="center"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
+
             android:textColor="#000000"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/gglink"
             android:layout_width="match_parent"
+            android:fontFamily="@font/open_sans"
+
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_weight="1"
@@ -74,6 +78,7 @@
             android:text="www.grupogss.com"
             android:linksClickable="true"
             android:textAlignment="center"
+
             android:textColor="#0000ff"
             android:textSize="12dp" />
         <TextView
@@ -81,6 +86,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
 
             android:id="@+id/numerogss"
             android:text="01411611"
@@ -93,6 +99,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
             android:id="@+id/correogss"
             android:text="movilidadgss@grupogss.com"
             android:textAlignment="center"
@@ -128,7 +135,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CadLan México"
+            android:text="Cad\u0026Lan México"
+            android:fontFamily="@font/open_sans"
             android:textAlignment="center"
             android:layout_weight="1"
             android:textColor="#000000"
@@ -140,6 +148,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="www.cadlan.com"
+            android:fontFamily="@font/open_sans"
+
             android:id="@+id/cadlink"
             android:padding="5dp"
             android:layout_weight="1"
@@ -155,6 +165,8 @@
             android:text="+52 (55) 91380799"
             android:textAlignment="center"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
+
             android:textColor="#0000ff"
             android:id="@+id/numerocad"
 
@@ -165,6 +177,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="apps.cadlan@gmail.com"
+            android:fontFamily="@font/open_sans"
             android:textAlignment="center"
             android:textColor="#0000ff"
             android:id="@+id/correocad"

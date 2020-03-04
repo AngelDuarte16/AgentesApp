@@ -1,12 +1,15 @@
 package com.angtek.agentesSGM.Activities
 
+import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -47,14 +50,6 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
         }
 
 
-
-
-        //   myspinner.onItemClickListener = this
-
-
-
-
-
         CancelarServicio.setOnClickListener(){
             cancelar()
         }
@@ -70,7 +65,6 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
     }
 
     fun cancelar(){
-
         val email : String = descripcion.text.toString()
         var errorMessage = ""
 
@@ -80,15 +74,14 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
 
         if (errorMessage.isEmpty()){
 
-
-            
-
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Deseas cancelar el servicio?")
                 .setPositiveButton("Si cancelar",
                     DialogInterface.OnClickListener { dialog, id ->
 
                         Log.d("App", "SIIIII CSNCELAAAR: ${dialog}")
+
+
 
                     })
                 .setNegativeButton("No",
@@ -179,16 +172,67 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
         queue.add(request)
 
 
+    }
+
+
+    fun cancelService(){
+
+        val progressDilog = ProgressDialog(this)
+        progressDilog.setMessage("Cancelando servicio")
+        progressDilog.setCancelable(false)
+        progressDilog.show()
+
+        var url = "https://5wbb09vkfi.execute-api.us-east-1.amazonaws.com/myCanelAPI/mycancel";
+
+        val myjson = JSONObject()
+        myjson.put("key1", User.myservicio!!.idS)
+        myjson.put("key2", "1")
+
+
+        val request = JsonObjectRequest(Request.Method.POST,url,myjson,
+            Response.Listener { response ->
+                try {
+
+                    var list = ArrayList<String>()
+                    val json : JSONObject = JSONObject(response.toString())
+                    var code  = json.getString("Code")
+                    if(code == "0000"){
+
+
+                        progressDilog.setMessage("Servicio cancelado exitosamente")
+                        Handler().postDelayed({progressDilog.dismiss()},2000)
+
+                        finish()
+
+
+
+                    }
+                }catch (e:Exception){
+                    Log.d("App", "Exception: ${e}")
+                }
+
+            }, Response.ErrorListener{
+                Log.d("App", "Error: ${it}")
+            })
+
+        request.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            // 0 means no retry
+            1, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(request)
+
 
 
     }
 
+    fun postIncidence(){
 
 
 
-
-
-
-
+    }
 
 }

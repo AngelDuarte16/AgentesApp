@@ -46,6 +46,7 @@ class Agente_Fragment : Fragment() {
         logoutButton.setOnClickListener {
             logout()
             TabsActivity().finish()
+            activity!!.finish()
 
         }
     }

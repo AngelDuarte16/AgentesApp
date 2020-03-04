@@ -17,12 +17,27 @@
 
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:paddingBottom="30dp"
-        app:srcCompat="@drawable/mainwc" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SGMóvil"
+        android:fontFamily="@font/open_sans"
+        android:textSize="70dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cad\u0026Lan\u00a9 México "
+        android:fontFamily="@font/open_sans"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
 
 
     <LinearLayout
@@ -38,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Agente"
+            android:fontFamily="@font/open_sans"
             android:textSize="30dp"
             android:textColor="#ffffff"
             android:layout_gravity="center"
@@ -49,11 +65,11 @@
         <EditText
             android:id="@+id/emailET"
             android:layout_width="match_parent"
+            android:fontFamily="@font/open_sans"
             android:layout_height="wrap_content"
-            android:background="@drawable/myshape"
+            android:background="@drawable/etshape"
             android:hint="Usuario"
             android:maxLines="1"
-
             android:padding="10dp"
             android:inputType="number"
             />
@@ -63,7 +79,8 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/myshape"
+            android:fontFamily="@font/open_sans"
+            android:background="@drawable/etshape"
             android:hint="Contraseña"
             android:padding="10dp"
             android:layout_marginTop="20dp"
@@ -74,9 +91,10 @@
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
+            android:fontFamily="@font/open_sans"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/myshape"
+            android:background="@drawable/etshape"
             android:imeOptions="actionDone"
             android:text="Iniciar sesión"
             android:textColor="#000000"
