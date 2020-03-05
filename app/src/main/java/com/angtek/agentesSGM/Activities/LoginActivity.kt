@@ -17,17 +17,12 @@ import com.angtek.agentesSGM.Models.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONArray
 import org.json.JSONObject
-import org.json.JSONStringer
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Handler
 import android.view.Gravity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.angtek.agentesSGM.R
-import kotlinx.android.synthetic.main.agente_fragment_layout.*
+
 
 
 class LoginActivity : AppCompatActivity() {
