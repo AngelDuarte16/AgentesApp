@@ -33,14 +33,20 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
 
 
 
+    var kindicidence : String = ""
+    var myCPERIOD_ID : String = ""
+    var myTROUTE_GROUP_ID : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_servicio_detail)
 
         getIncidenceCatalogo()
+        getserviceinfo()
 
         var myservicio : Servicio? = User.myservicio
+        Log.d("App", "PEROOOO: ${myservicio!!.idS}")
+
 
 
 
@@ -60,7 +66,7 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
 
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        Log.d("App", "p0: ${p0}")
+        Log.d("App", "p0: ${p0}" +  "p2: ${p2}")
 
     }
 
@@ -80,6 +86,7 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                     DialogInterface.OnClickListener { dialog, id ->
 
                         Log.d("App", "SIIIII CSNCELAAAR: ${dialog}")
+                        cancelService()
 
 
 
@@ -121,16 +128,13 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                     if(code == "0000"){
                         var results : JSONArray = json.getJSONArray("Data")
                         if (results.length() > 0){
-                            Log.d("App", "resultsCATALOGO: ${results}")
 
                             val myData = results.getJSONObject(0)
 
-                            Log.d("App", "results.length(): ${results.length()}")
 
                             for (i in 0..(results.length() - 1)){
                                 val jsonService = results.getJSONObject(i)
                                 var myDescrip = jsonService.getString("DESCRIPTION")
-                                Log.d("jsonService", "myDescrip: ${myDescrip}")
                                 list.add(myDescrip)
 
                             }
@@ -140,9 +144,7 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                                 override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
                                     // Display the selected item text on text view
 
-
-                                    Log.d("jsonService", "Spinner selected : ${parent.getItemAtPosition(position).toString()}" )
-
+                                    kindicidence = position.toString()
                                 }
 
                                 override fun onNothingSelected(parent: AdapterView<*>){
@@ -202,7 +204,10 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                         progressDilog.setMessage("Servicio cancelado exitosamente")
                         Handler().postDelayed({progressDilog.dismiss()},2000)
 
-                        finish()
+
+                        postIncidence()
+
+
 
 
 
@@ -230,6 +235,114 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
     }
 
     fun postIncidence(){
+
+
+        var url = "https://5wbb09vkfi.execute-api.us-east-1.amazonaws.com/myCanelAPI/mycancel";
+
+        val myjson = JSONObject()
+        myjson.put("key1", User.myservicio!!.idS)
+        myjson.put("key2", "3")
+        myjson.put("TPASSENGER_ID",User.ID)
+        myjson.put("TROUTE_GROUP_ID",myTROUTE_GROUP_ID)
+        myjson.put("CPERIOD_ID",myCPERIOD_ID)
+        myjson.put("CPASS_INCIDENCE_ID",kindicidence)
+        myjson.put("COMMENT",descripcion.text.toString())
+
+
+
+        val request = JsonObjectRequest(Request.Method.POST,url,myjson,
+            Response.Listener { response ->
+                try {
+
+                    var list = ArrayList<String>()
+                    val json : JSONObject = JSONObject(response.toString())
+                    var code  = json.getString("Code")
+                    if(code == "0000"){
+
+
+                        descripcion.setText("")
+
+
+                    }
+                }catch (e:Exception){
+                    Log.d("App", "Exception: ${e}")
+                }
+
+            }, Response.ErrorListener{
+                Log.d("App", "Error: ${it}")
+            })
+
+        request.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            // 0 means no retry
+            1, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(request)
+
+    }
+
+    fun getserviceinfo(){
+
+
+        var url = "https://5wbb09vkfi.execute-api.us-east-1.amazonaws.com/myCanelAPI/mycancel";
+
+        val myjson = JSONObject()
+        myjson.put("key1", User.myservicio!!.idS)
+        myjson.put("key2", "4")
+
+
+        val request = JsonObjectRequest(Request.Method.POST,url,myjson,
+            Response.Listener { response ->
+                try {
+                    Log.d("App", "responseresponseresponse SERVICE: ${response}")
+                    var list = ArrayList<String>()
+                    val json : JSONObject = JSONObject(response.toString())
+                    var code  = json.getString("Code")
+                    Log.d("App", "codecodeABOUT SERVICE: ${code}")
+
+                    if(code == "0000"){
+                        var results : JSONArray = json.getJSONArray("Data")
+                        if (results.length() > 0){
+                            Log.d("App", "ABOUT SERVICE: ${results}")
+
+                            var data = results.getJSONObject(0)
+                            var TROUTE_GROUP_ID = data.getString("TROUTE_GROUP_ID")
+                            var CPERIOD_ID = data.getString("CPERIOD_ID")
+                            if (TROUTE_GROUP_ID != null){
+                                myTROUTE_GROUP_ID = TROUTE_GROUP_ID
+                            }
+                            if (CPERIOD_ID != null){
+                                myCPERIOD_ID = CPERIOD_ID
+                            }
+
+
+
+
+
+                        }
+                    }
+                }catch (e:Exception){
+                    Log.d("App", "Exception: ${e}")
+                }
+
+            }, Response.ErrorListener{
+                Log.d("App", "Error: ${it}")
+            })
+
+        request.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            // 0 means no retry
+            1, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(request)
+
+
 
 
 

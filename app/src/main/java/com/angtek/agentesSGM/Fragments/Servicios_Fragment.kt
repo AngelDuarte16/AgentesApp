@@ -2,6 +2,7 @@ package com.angtek.agentesSGM.Fragments
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.servicios_fragment_layout.*
 import org.json.JSONArray
 import org.json.JSONObject
 import android.view.ViewManager
-
+import kotlinx.android.synthetic.main.activity_servicio_detail.*
 
 
 class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickListener {
@@ -32,6 +33,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
 
     var adapter : ServiciosRecyclerAdapter? = null
     var dataSource : ArrayList<Servicio> = ArrayList<Servicio>()
+    var counter : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,12 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
+        Log.d("App", "onActivityCreated:")
+
         getServices()
+
 
         adapter = ServiciosRecyclerAdapter(activity, dataSource)
         serciviosRecyclerView?.adapter = adapter
@@ -53,12 +60,34 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("App", "onResume:" + "counter: ${counter}")
+        if(counter>0){
+            Log.d("App", "onResume:" + "counter: ${counter} " + "A PEDIRRRRRRRRR")
+            dataSource.clear()
+            getServices()
+        }
+        counter += 1
+        adapter?.notifyDataSetChanged()
+
+    }
+
+
 
     override fun onSelectedPosition(position: Int) {
         val servicio : Servicio = dataSource.get(position)
-        val intent = Intent(activity, ServicioDetailActivity::class.java)
-        User.myservicio = servicio
-        startActivity(intent)
+
+        Log.d("App", "servicio!!.tipo:${servicio!!.tipo}")
+        if (servicio!!.tipo == "TERMINADO" || servicio!!.tipo == "NO ABORDO" || servicio!!.tipo == "CANCELADO" || servicio!!.tipo == "RECHAZADO" || servicio!!.tipo == "AGENTE ANULADO"){
+            Log.d("App", "NO ENTRARRRRR MONONONONONONNONO")
+        }else{
+            val intent = Intent(activity, ServicioDetailActivity::class.java)
+            User.myservicio = servicio
+            startActivity(intent)
+        }
+
+
     }
 
 

@@ -62,31 +62,75 @@
 
 
 
-        <EditText
-            android:id="@+id/emailET"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:fontFamily="@font/open_sans"
-            android:layout_height="wrap_content"
-            android:background="@drawable/etshape"
-            android:hint="Usuario"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:inputType="number"
-            />
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/passwordET"
-            android:maxLines="1"
+
+            <ImageView
+                android:id="@+id/logUser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:tint="#ffffff"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_user" />
+
+
+
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/open_sans"
+                android:layout_height="wrap_content"
+                android:background="@drawable/etshape"
+                android:hint="Usuario"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:inputType="number"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:background="@drawable/etshape"
-            android:hint="Contraseña"
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            android:maxLength="10"
-            android:inputType="numberPassword"
-            />
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/lospass"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:tint="#ffffff"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_key" />
+
+
+            <EditText
+                android:id="@+id/passwordET"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:background="@drawable/etshape"
+                android:hint="Contraseña"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:maxLength="10"
+                android:inputType="numberPassword"
+                />
+
+        </LinearLayout>
+
+
+
 
         <Button
             android:id="@+id/loginButton"

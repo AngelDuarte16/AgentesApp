@@ -1,6 +1,7 @@
 package com.angtek.agentesSGM.Fragments
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -43,7 +44,7 @@ class Agente_Fragment : Fragment() {
         UIStart()
 
 
-        logoutButton.setOnClickListener {
+        mylogout.setOnClickListener {
             logout()
             TabsActivity().finish()
             activity!!.finish()
@@ -117,8 +118,11 @@ class Agente_Fragment : Fragment() {
 
 
     fun logout(){
-        val intent = Intent(activity, LoginActivity::class.java)
-        startActivity(intent)
+
+        val preferences = activity!!.getSharedPreferences("USUARIO", Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.clear()
+        editor.commit()
 
         User.myservicio = null
         User.ID = null
@@ -129,6 +133,9 @@ class Agente_Fragment : Fragment() {
         User.GENDER = null
         User.ACTIVE = null
         User.INCIDENCES = null
+
+        val intent = Intent(activity, LoginActivity::class.java)
+        startActivity(intent)
 
     }
 

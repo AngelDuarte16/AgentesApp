@@ -18,7 +18,7 @@
         android:layout_margin="30dp"
         android:elevation="12dp"
 
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
 
         >
 
@@ -49,7 +49,7 @@
             android:padding="10dp"
             android:elevation="6dp"
             android:layout_margin="20dp"
-            android:background="#ffffff"
+            android:background="@drawable/myshape"
 
             >
 
@@ -130,6 +130,8 @@
 
 
 
+
+
             </LinearLayout>
 
 
@@ -138,19 +140,43 @@
 
 
 
-        <Button
-            android:id="@+id/logoutButton"
+
+
+        <LinearLayout
+            android:id="@+id/mylogout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#A5B1C6"
-            android:fontFamily="@font/open_sans"
-            android:layout_margin="20dp"
-            android:imeOptions="actionDone"
-            android:text="CERRAR SESIÓN"
-            android:textColor="#ffffff"
+            android:orientation="horizontal"
+            android:background="@drawable/logoutshape"
+            android:layout_height="wrap_content">
 
-            />
 
+            <ImageView
+                android:id="@+id/iconlogout"
+                android:layout_gravity="left"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:tint="#ffffff"
+                android:background="#222222"
+                android:src="@drawable/ic_logout"
+
+                />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#222222"
+                android:text="CERRAR SESIÓN"
+                android:fontFamily="@font/open_sans"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+        </LinearLayout>
 
 
 

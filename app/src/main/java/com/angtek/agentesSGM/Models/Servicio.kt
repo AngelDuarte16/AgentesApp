@@ -63,14 +63,14 @@ class Servicio {
         }
         var mysede = destino
         mysede = mysede.replace("_"," ")
-        mysede = mysede.replace("SALIDA DE","")
+        mysede = mysede.replace("SALIDA DE ","")
         mysede = mysede.replace("SEDE","")
         sede =  mysede
 
 
         var myorigen = origen
         myorigen = myorigen.replace("_"," ")
-        myorigen = myorigen.replace("SALIDA DE","")
+        myorigen = myorigen.replace("SALIDA DE ","")
         myorigen = myorigen.replace("SEDE","")
         origen =  myorigen
 

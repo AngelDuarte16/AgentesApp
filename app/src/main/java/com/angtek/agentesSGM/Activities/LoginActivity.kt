@@ -2,8 +2,12 @@ package com.angtek.agentesSGM.Activities
 
 import android.Manifest
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,9 +37,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        //emailET.setText("45939316")
-        //passwordET.setText("9727302")
-
+        emailET.setText("70426677")
+        passwordET.setText("9765292")
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -56,6 +59,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun loginPressed() {
+
+        loginButton.setBackgroundColor(Color.parseColor("#666666"))
 
         val progressDilog = ProgressDialog(this)
         progressDilog.setMessage("Espere un momento")
@@ -101,21 +106,32 @@ class LoginActivity : AppCompatActivity() {
 
                                 if(password == User.CODE){
 
+
+                                    savesession("user",emailET.text.toString())
+                                    savesession("pass",passwordET.text.toString())
+
+
                                     emailET.setText("")
                                     passwordET.setText("")
 
                                     loginButton.isEnabled = true
 
-                                    Handler().postDelayed({progressDilog.dismiss()},100)
-                                    val intent = Intent(this, TabsActivity::class.java)
+                                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
 
+                                    Handler().postDelayed({progressDilog.dismiss()},100)
+
+
+
+
+                                    val intent = Intent(this, TabsActivity::class.java)
                                     startActivity(intent)
+                                    finish()
 
                                 }else{
                                     loginButton.isEnabled = true
+                                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
 
                                     Handler().postDelayed({progressDilog.dismiss()},100)
-
                                     var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
                                         Toast.LENGTH_LONG)
                                     mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
@@ -124,6 +140,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             }else{
+                                loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
                                 Handler().postDelayed({progressDilog.dismiss()},100)
                                 var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
                                     Toast.LENGTH_LONG)
@@ -137,10 +154,13 @@ class LoginActivity : AppCompatActivity() {
                     }catch (e:Exception){
                         Log.d("App", "Exception: ${e}")
                         loginButton.isEnabled = true
+                        loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+
                     }
 
                 }, Response.ErrorListener{
                     loginButton.isEnabled = true
+                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
                     Log.d("App", "Error: ${it}")
                     Handler().postDelayed({progressDilog.dismiss()},100)
                     var mytoast = Toast.makeText(this, "Error de red, intente más tarde",
@@ -161,10 +181,22 @@ class LoginActivity : AppCompatActivity() {
 
         }else{
             loginButton.isEnabled = true
+            loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
             progressDilog.dismiss()
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
 
     }
+
+
+    fun savesession(key: String, response: String){
+
+        val preferences = this.getSharedPreferences("USUARIO",Context.MODE_PRIVATE)
+        val editor = preferences.edit()
+        editor.putString(key,response)
+        editor.commit()
+
+    }
+
 
 }
