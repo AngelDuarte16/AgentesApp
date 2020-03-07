@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         emailET.setText("70426677")
         passwordET.setText("9765292")
 
+            //comentario
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
