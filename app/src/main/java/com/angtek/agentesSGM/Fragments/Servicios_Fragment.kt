@@ -57,6 +57,9 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         serciviosRecyclerView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
         adapter?.listener = this
 
+        swipeRefreshLayout?.setOnRefreshListener {
+            getServices()
+        }
 
     }
 
@@ -108,6 +111,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         val request = JsonObjectRequest(
             Request.Method.POST,url,jsonObject,
             Response.Listener { response ->
+                swipeRefreshLayout?.isRefreshing = false
                 try {
                     val json : JSONObject = JSONObject(response.toString())
                     var code  = json.getString("Code")
@@ -119,6 +123,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
                             params.height = 0
                             NoServicios.layoutParams = params
 
+                            dataSource.clear()
                             for (i in 0..(results.length() - 1)){
                                 val jsonService = results.getJSONObject(i)
                                 val myServicio = Servicio(jsonService)
@@ -137,6 +142,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
                     Log.d("App", "Exception: ${e}")
                 }
             }, Response.ErrorListener{
+                swipeRefreshLayout?.isRefreshing = false
                 Log.d("App", "Error: ${it}")
             })
         request.retryPolicy = DefaultRetryPolicy(
