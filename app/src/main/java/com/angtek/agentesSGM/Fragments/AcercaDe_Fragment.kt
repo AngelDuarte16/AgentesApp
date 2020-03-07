@@ -52,7 +52,7 @@ class AcercaDe_Fragment : Fragment() {
         }
 
         correogss.setOnClickListener(){
-
+//hola
             val mIntent = Intent(Intent.ACTION_SEND)
 
             mIntent.data = Uri.parse("mailto:")
