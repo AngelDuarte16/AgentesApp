@@ -20,14 +20,12 @@ class AcercaDe_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Log.d("App", "ACTIVITYYYYYYCREATEEE:")
         return inflater.inflate(R.layout.acercade_fragment_layout, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        Log.d("App", "ACTIVITYYYYYACTIVITYYYY:")
         gglink.setOnClickListener(){
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse("http://www.grupogss.com/")
@@ -77,6 +75,8 @@ class AcercaDe_Fragment : Fragment() {
 
         }
 
+
+        //Hola a todos
 
         correocad.setOnClickListener(){
 
