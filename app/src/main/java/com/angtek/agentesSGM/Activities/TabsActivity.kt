@@ -26,8 +26,9 @@ class TabsActivity : AppCompatActivity() {
         configureTab(1, R.drawable.ic_map, "2")
         configureTab(2, R.drawable.ic_settings, "3")
 
-
-
+        var a = 10
+        var b = a + 10
+        //ok
     }
 
 
