@@ -41,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
         passwordET.setText("9765292")
 
 
+        //credenciales
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.INTERNET,
