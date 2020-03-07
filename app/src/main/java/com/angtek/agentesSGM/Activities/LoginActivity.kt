@@ -37,12 +37,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        emailET.setText("70426677")
-        passwordET.setText("9765292")
-
-            //comentario
-
-        //credenciales
+        emailET.setText("70909738")
+        passwordET.setText("9715173")
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
@@ -63,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginPressed() {
 
-        loginButton.setBackgroundColor(Color.parseColor("#666666"))
+        loginButton.setBackgroundResource(R.drawable.loginbuttolasthape)
 
         val progressDilog = ProgressDialog(this)
         progressDilog.setMessage("Espere un momento")
@@ -119,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
 
                                     loginButton.isEnabled = true
 
-                                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+                                    loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
 
                                     Handler().postDelayed({progressDilog.dismiss()},100)
 
@@ -132,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
 
                                 }else{
                                     loginButton.isEnabled = true
-                                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+                                    loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
 
                                     Handler().postDelayed({progressDilog.dismiss()},100)
                                     var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
@@ -143,7 +139,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 
                             }else{
-                                loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+                                loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
                                 Handler().postDelayed({progressDilog.dismiss()},100)
                                 var mytoast = Toast.makeText(this, "Error en usuario o contraseña",
                                     Toast.LENGTH_LONG)
@@ -157,13 +153,13 @@ class LoginActivity : AppCompatActivity() {
                     }catch (e:Exception){
                         Log.d("App", "Exception: ${e}")
                         loginButton.isEnabled = true
-                        loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+                        loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
 
                     }
 
                 }, Response.ErrorListener{
                     loginButton.isEnabled = true
-                    loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+                    loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
                     Log.d("App", "Error: ${it}")
                     Handler().postDelayed({progressDilog.dismiss()},100)
                     var mytoast = Toast.makeText(this, "Error de red, intente más tarde",
@@ -184,7 +180,7 @@ class LoginActivity : AppCompatActivity() {
 
         }else{
             loginButton.isEnabled = true
-            loginButton.setBackgroundColor(Color.parseColor("#ffffff"))
+            loginButton.setBackgroundResource(R.drawable.loginbuttofirstshape)
             progressDilog.dismiss()
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }

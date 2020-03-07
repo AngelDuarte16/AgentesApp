@@ -40,7 +40,7 @@
                 android:id="@+id/nombreTV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.6"
+                android:layout_weight="0.7"
                 android:fontFamily="@font/open_sans"
                 android:paddingBottom="20dp"
                 android:text="Andres Manuel"

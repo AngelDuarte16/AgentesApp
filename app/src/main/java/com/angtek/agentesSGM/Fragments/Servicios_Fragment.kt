@@ -25,6 +25,10 @@ import org.json.JSONArray
 import org.json.JSONObject
 import android.view.ViewManager
 import kotlinx.android.synthetic.main.activity_servicio_detail.*
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 
 class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickListener {
@@ -46,6 +50,9 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val currentTimestamp = System.currentTimeMillis()
+        val timeStamp: String = SimpleDateFormat("HHmm").format(currentTimestamp)
+        Log.d("App", "timeStamp: ${timeStamp}")
 
         Log.d("App", "onActivityCreated:")
 
@@ -58,6 +65,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         adapter?.listener = this
 
         swipeRefreshLayout?.setOnRefreshListener {
+            dataSource.clear()
             getServices()
         }
 
@@ -85,6 +93,9 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
         if (servicio!!.tipo == "TERMINADO" || servicio!!.tipo == "NO ABORDO" || servicio!!.tipo == "CANCELADO" || servicio!!.tipo == "RECHAZADO" || servicio!!.tipo == "AGENTE ANULADO"){
             Log.d("App", "NO ENTRARRRRR MONONONONONONNONO")
         }else{
+
+
+
             val intent = Intent(activity, ServicioDetailActivity::class.java)
             User.myservicio = servicio
             startActivity(intent)
@@ -123,7 +134,6 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
                             params.height = 0
                             NoServicios.layoutParams = params
 
-                            dataSource.clear()
                             for (i in 0..(results.length() - 1)){
                                 val jsonService = results.getJSONObject(i)
                                 val myServicio = Servicio(jsonService)

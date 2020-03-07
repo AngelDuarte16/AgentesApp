@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "725400393979-tihgk22vsu8nqb9f8dovo2nlrokshbjo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.angtek.agentesSGM",
+            "certificate_hash": "2bb62f82d818e2abd5c25302ba7c9bee6c9ca57b"
+          }
+        },
+        {
           "client_id": "725400393979-ua1r43uis0qoqa3pkpq2nqovt8aejhng.apps.googleusercontent.com",
           "client_type": 3
         }
