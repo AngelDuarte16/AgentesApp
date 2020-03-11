@@ -29,6 +29,7 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.format.DateTimeFormatter
+import kotlin.math.log
 
 
 class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickListener {
@@ -50,12 +51,8 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val currentTimestamp = System.currentTimeMillis()
-        val timeStamp: String = SimpleDateFormat("HHmm").format(currentTimestamp)
-        Log.d("App", "timeStamp: ${timeStamp}")
 
-        Log.d("App", "onActivityCreated:")
-
+        dataSource.clear()
         getServices()
 
 
@@ -73,9 +70,7 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
 
     override fun onResume() {
         super.onResume()
-        Log.d("App", "onResume:" + "counter: ${counter}")
         if(counter>0){
-            Log.d("App", "onResume:" + "counter: ${counter} " + "A PEDIRRRRRRRRR")
             dataSource.clear()
             getServices()
         }
@@ -89,27 +84,59 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
     override fun onSelectedPosition(position: Int) {
         val servicio : Servicio = dataSource.get(position)
 
-        Log.d("App", "servicio!!.tipo:${servicio!!.tipo}")
         if (servicio!!.tipo == "TERMINADO" || servicio!!.tipo == "NO ABORDO" || servicio!!.tipo == "CANCELADO" || servicio!!.tipo == "RECHAZADO" || servicio!!.tipo == "AGENTE ANULADO"){
-            Log.d("App", "NO ENTRARRRRR MONONONONONONNONO")
         }else{
 
+            val currentTimestamp = System.currentTimeMillis()
+            val timeStamph: String = SimpleDateFormat("HH").format(currentTimestamp)
+            val timeStampm: String = SimpleDateFormat("mm").format(currentTimestamp)
+            val timeStampd: String = SimpleDateFormat("dd").format(currentTimestamp)
+
+            var horaservicio = servicio.horaservicio
+            var fechaservicio = servicio.fecha
+
+            horaservicio = horaservicio.replace(" ", ":")
+            val strs = horaservicio.split(":").toTypedArray()
+            val strd = fechaservicio.split("-").toTypedArray()
 
 
-            val intent = Intent(activity, ServicioDetailActivity::class.java)
-            User.myservicio = servicio
-            startActivity(intent)
+            Log.d("App","strd.get(0):${strd.get(0)}, timeStampd${ timeStampd}")
+            val diamasuno = timeStampd.toInt() + 1
+            if (strd.get(0) == timeStampd || strd.get(0) == diamasuno.toString()){
+
+                    val horaact = timeStamph.toInt()
+                    val horaser = strs.get(0).toInt()
+
+                    val minutosact = timeStampm.toInt() + (horaact*60)
+                    var minutosser = 0
+
+                    if(strs.get(3) == "AM") {
+                         minutosser = strs.get(1).toInt() + (horaser * 60)
+                    }else{
+                         minutosser = strs.get(1).toInt() + (horaser*60) + 720
+
+                    }
+
+                    if ((minutosser - minutosact)>60){
+                        val intent = Intent(activity, ServicioDetailActivity::class.java)
+                        User.myservicio = servicio
+                        startActivity(intent)
+
+                }
+
+
+
+            }
         }
-
-
     }
 
 
     fun getServices(){
 
-        /*
-        val serivicio1 = Servicio("Salida - Terminado","11/12/20","SEDE : Encarnacio","PROVEEDOR : Elitaxi", "CONDUCTOR : Carlos Enrque", "Tesla Serie 1")
-        val serivicio2 = Servicio("Salida - Terminado","14/15/16","SEDE : Terminal ADO","PROVEEDOR : ADO", "CONDUCTOR : Pepe pasto", "Chimeco")
+      /*
+
+        val serivicio1 = Servicio("Programado","11/12/20","SEDE : Encarnacio","PROVEEDOR : Elitaxi", "CONDUCTOR : Carlos Enrque", "Tesla Serie 1","11:00:00 PM","10-03-20")
+        val serivicio2 = Servicio("Programado","14/15/16","SEDE : Terminal ADO","PROVEEDOR : ADO", "CONDUCTOR : Pepe pasto", "Chimeco","08:00:00 AM","10-03-20")
         dataSource.add(serivicio1)
         dataSource.add(serivicio2)
 */
@@ -129,7 +156,6 @@ class Servicios_Fragment :Fragment(), ServiciosRecyclerAdapter.ServicioClickList
                     if(code == "0000"){
                         var results : JSONArray = json.getJSONArray("Data")
                         if (results.length() > 0){
-
                             val params: ViewGroup.LayoutParams = NoServicios.layoutParams
                             params.height = 0
                             NoServicios.layoutParams = params

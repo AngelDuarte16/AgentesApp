@@ -17,6 +17,8 @@ class Servicio {
     var destino: String = ""
     var categoria: String = ""
     var placa:String = ""
+    var horaservicio = ""
+    var fecha = ""
 
 
 
@@ -30,7 +32,9 @@ class Servicio {
         sede: String,
         proveedor: String,
         conductor: String,
-        Vehiculo: String
+        Vehiculo: String,
+        horaservicio : String,
+        fecha : String
     ) {
         this.tipo = tipo
         this.horafecha = horafecha
@@ -38,13 +42,17 @@ class Servicio {
         this.proveedor = proveedor
         this.conductor = conductor
         this.Vehiculo = Vehiculo
+       this.horaservicio = horaservicio
+       this.fecha = fecha
     }
 
     constructor(jsonObject: JSONObject) {
 
 
+        horaservicio =  jsonObject.getString("horaSer")
+
         tipo = jsonObject.getString("ESTATUS")
-        var fecha = jsonObject.getString("fechaSer")
+         fecha = jsonObject.getString("fechaSer")
         fecha = fecha.replace("T00:00:00.000Z","")
         horafecha = fecha + "  " + jsonObject.getString("horaSer")
         proveedor = jsonObject.getString("PROVEEDOR")

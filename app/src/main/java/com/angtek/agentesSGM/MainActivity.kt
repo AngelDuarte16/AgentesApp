@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
-                    Log.w("App", "getInstanceId failed", task.exception)
+                  //  Log.w("App", "getInstanceId failed", task.exception)
                     return@OnCompleteListener
                 }
 
@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
                 val token = task.result?.token
 
                 // Log and toast
-                val msg =  token
+             /*   val msg =  token
                 Log.d("App", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()*/
             })
 
 
@@ -69,13 +69,12 @@ class MainActivity : AppCompatActivity() {
             if (mypass !=null){
 
 
-                Log.w("SINSESIIIONNNmyuser",myuser)
-                Log.w("SINSESIIIONNNmypass",mypass)
+
                 loginPressed(myuser,mypass!!)
             }
 
         }else{
-            Log.w("SINSESIIIONNN","NO HAY UNA SESION")
+
             Timer().schedule(timerTask {
                 val intent = Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(intent)
@@ -141,6 +140,10 @@ class MainActivity : AppCompatActivity() {
                 }, Response.ErrorListener{
 
                     Log.d("App", "Error: ${it}")
+                    var mytoast = Toast.makeText(this, "Error de red, intente más tarde",
+                        Toast.LENGTH_LONG)
+                    mytoast.setGravity(Gravity.CENTER or Gravity.CENTER, 0, 0)
+                    mytoast.show()
 
                 })
 

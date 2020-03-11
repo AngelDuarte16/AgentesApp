@@ -28,6 +28,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.concurrent.timerTask
 
 class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -45,10 +46,6 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
         getserviceinfo()
 
         var myservicio : Servicio? = User.myservicio
-        Log.d("App", "PEROOOO: ${myservicio!!.idS}")
-
-
-
 
         if (myservicio!!.tipo == "TERMINADO" || myservicio!!.tipo == "NO ABORDO" || myservicio!!.tipo == "CANCELADO" || myservicio!!.tipo == "RECHAZADO" || myservicio!!.tipo == "AGENTE ANULADO"){
             CancelarServicio.isEnabled = false
@@ -67,7 +64,6 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
 
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        Log.d("App", "p0: ${p0}" +  "p2: ${p2}")
 
     }
 
@@ -86,7 +82,6 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                 .setPositiveButton("Si cancelar",
                     DialogInterface.OnClickListener { dialog, id ->
 
-                        Log.d("App", "SIIIII CSNCELAAAR: ${dialog}")
                         cancelService()
 
 
@@ -145,7 +140,7 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                                 override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
                                     // Display the selected item text on text view
 
-                                    kindicidence = position.toString()
+                                    kindicidence = (position + 1).toString()
                                 }
 
                                 override fun onNothingSelected(parent: AdapterView<*>){
@@ -251,6 +246,7 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
 
 
 
+
         val request = JsonObjectRequest(Request.Method.POST,url,myjson,
             Response.Listener { response ->
                 try {
@@ -258,10 +254,29 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
                     var list = ArrayList<String>()
                     val json : JSONObject = JSONObject(response.toString())
                     var code  = json.getString("Code")
+
+
+
                     if(code == "0000"){
+                        var results  = json.getJSONObject("Data")
+                        if (results.length() > 0){
+
+                            descripcion.setText("")
 
 
-                        descripcion.setText("")
+                            Timer().schedule(timerTask {
+                                finish()
+                            }, 3000)
+
+                            //finish()
+
+                        }else{
+
+                            Log.d("App","ERROR")
+
+                        }
+
+
 
 
                     }
@@ -298,24 +313,21 @@ class ServicioDetailActivity : AppCompatActivity(), AdapterView.OnItemClickListe
         val request = JsonObjectRequest(Request.Method.POST,url,myjson,
             Response.Listener { response ->
                 try {
-                    Log.d("App", "responseresponseresponse SERVICE: ${response}")
                     var list = ArrayList<String>()
                     val json : JSONObject = JSONObject(response.toString())
                     var code  = json.getString("Code")
-                    Log.d("App", "codecodeABOUT SERVICE: ${code}")
 
                     if(code == "0000"){
                         var results : JSONArray = json.getJSONArray("Data")
                         if (results.length() > 0){
-                            Log.d("App", "ABOUT SERVICE: ${results}")
 
                             var data = results.getJSONObject(0)
                             var TROUTE_GROUP_ID = data.getString("TROUTE_GROUP_ID")
                             var CPERIOD_ID = data.getString("CPERIOD_ID")
-                            if (TROUTE_GROUP_ID != null){
+                            if (TROUTE_GROUP_ID != "null"){
                                 myTROUTE_GROUP_ID = TROUTE_GROUP_ID
                             }
-                            if (CPERIOD_ID != null){
+                            if (CPERIOD_ID != "null"){
                                 myCPERIOD_ID = CPERIOD_ID
                             }
 

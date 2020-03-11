@@ -37,9 +37,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        emailET.setText("70909738")
-        passwordET.setText("9715173")
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.INTERNET,

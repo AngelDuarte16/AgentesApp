@@ -37,7 +37,6 @@ class ServiciosRecyclerAdapter : RecyclerView.Adapter<ServiciosRecyclerAdapter.M
         var myView : View = View.inflate(myContext, R.layout.layout_servicios, null)
         val holder : ServiciosRecyclerAdapter.MyViewHolder = ServiciosRecyclerAdapter.MyViewHolder(myView)
         myView.setOnClickListener {
-            Log.d("App", "Position: ${holder.adapterPosition}")
             listener?.onSelectedPosition(holder.adapterPosition)
         }
         return  holder

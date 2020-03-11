@@ -23,12 +23,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
 
-        Log.d("App","Notificacion received")
-        Log.d("App","from: ${p0.from}")
+       // Log.d("App","Notificacion received")
+        //Log.d("App","from: ${p0.from}")
 
 
         if (p0.data.size >0){
-            Log.d("App","message: ${p0.data}")
+           // Log.d("App","message: ${p0.data}")
 
             try {
                 if (p0 != null){
