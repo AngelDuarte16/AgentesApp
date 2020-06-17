@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AgentesSGM.iml" filepath="$PROJECT_DIR$/AgentesSGM.iml" group="AgentesSGM" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="AgentesSGM/app" />
+    </modules>
+  </component>
+</project>
