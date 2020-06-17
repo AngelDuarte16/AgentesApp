@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/myshape"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_margin="20dp"
+        android:elevation="6dp"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/open_sans"
+            android:text="Salida - Terminado"
+            android:background="@drawable/tituleshape"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/horafecha"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="13/02/2020 15:00"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:gravity="left"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="SALIDA:"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+
+
+            <TextView
+                android:id="@+id/SalidaTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Elitaxi"
+                android:fontFamily="@font/open_sans"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/open_sans"
+                android:gravity="left"
+                android:text="DESTINO:"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/sede"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:fontFamily="@font/open_sans"
+                android:text="Encarnación"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:gravity="left"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/open_sans"
+                    android:text="PROVEEDOR:"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/proveedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:fontFamily="@font/open_sans"
+                    android:text="PROVEEDOR : Elitaxi"
+                    android:textColor="#000000"
+                    android:textSize="15dp"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="CONDUCTOR:"
+                android:fontFamily="@font/open_sans"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/chofer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:fontFamily="@font/open_sans"
+                android:text="Huaman Carlos Enrique"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:gravity="left"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="VEHÍCULO:"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+
+
+            <TextView
+                android:id="@+id/Vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:fontFamily="@font/open_sans"
+                android:text="Tesla Serie 1"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:gravity="left"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="PLACA:"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:fontFamily="@font/open_sans"
+                android:textSize="15dp"
+                />
+
+
+
+            <TextView
+                android:id="@+id/placasTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:fontFamily="@font/open_sans"
+                android:text="V30ARG"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

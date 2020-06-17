@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+
+    android:orientation="vertical"
+
+
+    tools:context=".Activities.ServicioDetailActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/myshape"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="20dp"
+        android:elevation="12dp"
+
+        android:layout_height="match_parent">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Reporte de incidencia"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            android:background="@drawable/reporteshape"
+            android:paddingBottom="10dp"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:layout_gravity="top"
+            />
+
+
+
+
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Seleccione un incidente: "
+            android:paddingTop="15dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/open_sans"
+            android:background="#ffffff"
+            android:textColor="#000000"
+            android:textSize="15dp"
+
+            android:paddingBottom="15dp"
+            />
+
+
+
+        <Spinner
+
+
+            android:id="@+id/myspinner"
+            android:fontFamily="@font/open_sans"
+            android:textSize="15dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:background="#FFFFFF"
+            android:fontFamily="@font/open_sans"
+            android:hint="Descripcion de la incidencia"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:maxLength="100"
+            android:inputType="textMultiLine"
+            />
+
+
+        <Button
+            android:id="@+id/CancelarServicio"
+            android:layout_width="match_parent"
+            android:imeOptions="actionDone"
+            android:fontFamily="@font/open_sans"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cancelarshape"
+            android:textColor="#ffffff"
+            android:text="Cancelar servicio"
+            android:layout_marginTop="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
